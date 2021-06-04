@@ -16,18 +16,20 @@ class _AgreementState extends State<Agreement> {
   bool agree = false;
   bool success = true;
   bool clicked = false;
+  String error = '';
   void donothing() {
     setState(() {
       clicked = true;
     });
     register(widget.user).then((value) {
-      if (value == true) {
+      if (value == '') {
         Navigator.pushAndRemoveUntil(context,
             MaterialPageRoute(builder: (context) {
           return Login();
         }), (route) => false);
       } else {
         setState(() {
+          error = value;
           clicked = false;
           success = false;
         });
@@ -59,16 +61,22 @@ class _AgreementState extends State<Agreement> {
         ),
         SizedBox(height: 20),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Checkbox(
-              value: agree,
-              onChanged: (value) {
-                setState(() {
-                  agree = value;
-                });
-              }),
-          Text(
-            "I have read and accept terms and conditions",
-            style: TextStyle(color: Colors.black54),
+          Flexible(
+            flex: 1,
+            child: Checkbox(
+                value: agree,
+                onChanged: (value) {
+                  setState(() {
+                    agree = value;
+                  });
+                }),
+          ),
+          Flexible(
+            flex: 3,
+            child: Text(
+              "I have read and accept terms and conditions",
+              style: TextStyle(color: Colors.black54),
+            ),
           ),
         ]),
         clicked
@@ -88,7 +96,7 @@ class _AgreementState extends State<Agreement> {
                   style: TextStyle(color: Colors.black54, fontSize: 12),
                 )
               : Text(
-                  'Some Error occured while sending your request, Try again !!!',
+                  error,
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.red, fontSize: 12),
                 ),

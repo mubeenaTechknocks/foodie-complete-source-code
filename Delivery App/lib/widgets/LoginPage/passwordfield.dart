@@ -24,6 +24,12 @@ class _PasswordFieldState extends State<PasswordField> {
       width: width,
       height: 50,
       child: TextFormField(
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please enter a password';
+          }
+          return null;
+        },
         onChanged: widget.onChanged,
         obscureText: true,
         textInputAction: TextInputAction.done,

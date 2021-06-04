@@ -17,8 +17,10 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   String _email;
   String _password;
+  String _errorText = '';
 
   bool clicked = false;
+  bool _error = false;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +70,15 @@ class _LoginState extends State<Login> {
                   },
                   hint: 'Password',
                 ),
-                Padding(padding: EdgeInsets.only(top: 45)),
+                _error
+                    ? Padding(
+                        child: Text(
+                          _errorText,
+                          style: TextStyle(
+                              color: Colors.red, fontWeight: FontWeight.w800),
+                        ),
+                        padding: EdgeInsets.symmetric(vertical: 22))
+                    : Padding(padding: EdgeInsets.only(top: 45)),
                 clicked
                     ? CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation(themegreenlight),
@@ -81,19 +91,23 @@ class _LoginState extends State<Login> {
                           });
                           print('login pressed');
                           login(_email, _password).then((value) {
-                            if (value == false) {
-                              print('Login Failed');
-                              setState(() {
-                                clicked = !clicked;
-                              });
-                              // showError();
-                            } else {
+                            print(value);
+                            if (value == 'true') {
                               Navigator.pushReplacement(context,
                                   MaterialPageRoute(builder: (context) {
                                 return Home(
                                   activeOrder: false,
                                 );
                               }));
+
+                              // showError();
+                            } else {
+                              print('Login Failed');
+                              setState(() {
+                                _errorText = value;
+                                _error = true;
+                                clicked = !clicked;
+                              });
                             }
                           });
                         },

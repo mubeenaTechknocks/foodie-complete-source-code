@@ -5,6 +5,7 @@ class TextBoxNew extends StatefulWidget {
   final String hint;
   final int max;
   final double height;
+  final String errorText;
 
   final String initialvalue;
   final Function(String) onChanged;
@@ -15,7 +16,8 @@ class TextBoxNew extends StatefulWidget {
       this.max = 1,
       this.height = 50,
       this.initialvalue,
-      this.onChanged})
+      this.onChanged,
+      this.errorText = 'This field should not be empty'})
       : super(key: key);
 
   @override
@@ -33,6 +35,12 @@ class _TextBoxNewState extends State<TextBoxNew> {
         width: width,
         height: widget.height,
         child: TextFormField(
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return widget.errorText;
+            }
+            return null;
+          },
           initialValue: widget.initialvalue,
           onChanged: widget.onChanged,
           maxLines: widget.max,

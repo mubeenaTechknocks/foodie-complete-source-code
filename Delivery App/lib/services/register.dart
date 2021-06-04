@@ -4,9 +4,8 @@ import 'package:foodie_delivery/models/usermodel.dart';
 import 'package:foodie_delivery/services/apiUrls.dart';
 import 'package:http/http.dart' as http;
 
-Future<bool> register(UserModel user) async {
-  var url =
-      Uri.parse(ApiUrls.deliveryBoyRegister);
+Future<String> register(UserModel user) async {
+  var url = Uri.parse(ApiUrls.deliveryBoyRegister);
   // var url =
   //     Uri.parse('https://foodiedeliveryapp.herokuapp.com/api/user/register');
   final response = await http.post(
@@ -34,10 +33,10 @@ Future<bool> register(UserModel user) async {
   if (response.statusCode == 200) {
     print(response.body);
 
-    return true;
+    return '';
   } else {
     print(response.statusCode);
     print(response.body.toString());
-    return false;
+    return response.body;
   }
 }

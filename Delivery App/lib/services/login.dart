@@ -5,7 +5,7 @@ import 'package:foodie_delivery/services/sharedPreference.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-Future<bool> login(String email, String password) async {
+Future<String> login(String email, String password) async {
   // var url =
   //     Uri.parse('https://foodiedeliveryapp.herokuapp.com/api/user/signin');
   var url = Uri.parse(ApiUrls.deliveryBoyLogin);
@@ -24,12 +24,12 @@ Future<bool> login(String email, String password) async {
     token = response.body.toString();
     saveStringValue(key: 'token', value: token);
 
-    return true;
+    return 'true';
   } else {
     print(response.statusCode);
     token = '';
-
-    return false;
+    print(response.body);
+    return response.body;
   }
 }
 

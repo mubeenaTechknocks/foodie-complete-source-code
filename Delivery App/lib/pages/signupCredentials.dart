@@ -16,7 +16,7 @@ class _SignupCredentialsState extends State<SignupCredentials> {
   PersonalInformations personalInformations = PersonalInformations();
   Address address = Address();
   VehicleDetails vehicleDetails = VehicleDetails();
-
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -26,51 +26,57 @@ class _SignupCredentialsState extends State<SignupCredentials> {
 
     return Scaffold(
       backgroundColor: themecolor,
-      body: SingleChildScrollView(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Column(children: [
-            Container(
-                margin: EdgeInsets.symmetric(horizontal: 45),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(padding: EdgeInsets.only(top: 200)),
-                      TitleText(
-                        title: "Register",
-                      ),
-                      Padding(padding: EdgeInsets.only(top: 20)),
-                      TextBoxNew(
-                        hint: "Enter Email ",
-                        onChanged: (value) {
-                          setState(() {
-                            user.email = value;
-                          });
-                        },
-                      ),
-                      PasswordField(
-                        onChanged: (value) {
-                          setState(() {
-                            user.password = value;
-                          });
-                        },
-                        hint: "Choose Password",
-                      ),
-                      PasswordField(hint: "Confirm Password"),
-                      Padding(padding: EdgeInsets.only(top: 40)),
-                      CommonButton(
-                        onPressed: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return FirstFormFill(
-                              userRegistration: user,
-                            );
-                          }));
-                        },
-                        title: "Next",
-                      )
-                    ])),
-          ]),
+      body: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Column(children: [
+              Container(
+                  margin: EdgeInsets.symmetric(horizontal: 45),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(padding: EdgeInsets.only(top: 200)),
+                        TitleText(
+                          title: "Register",
+                        ),
+                        Padding(padding: EdgeInsets.only(top: 20)),
+                        TextBoxNew(
+                          errorText: 'Provide a valid email address',
+                          hint: "Enter Email ",
+                          onChanged: (value) {
+                            setState(() {
+                              user.email = value;
+                            });
+                          },
+                        ),
+                        PasswordField(
+                          onChanged: (value) {
+                            setState(() {
+                              user.password = value;
+                            });
+                          },
+                          hint: "Choose Password",
+                        ),
+                        // PasswordField(hint: "Confirm Password"),
+                        Padding(padding: EdgeInsets.only(top: 40)),
+                        CommonButton(
+                          onPressed: () {
+                            if (_formKey.currentState.validate()) {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return FirstFormFill(
+                                  userRegistration: user,
+                                );
+                              }));
+                            }
+                          },
+                          title: "Next",
+                        )
+                      ])),
+            ]),
+          ),
         ),
       ),
     );

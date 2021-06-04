@@ -22,137 +22,144 @@ class FirstFormFill extends StatefulWidget {
 }
 
 class _FirstFormFillState extends State<FirstFormFill> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: themecolor,
-      body: SingleChildScrollView(
-        child: Column(children: [
-          Container(
-              margin: EdgeInsets.symmetric(horizontal: 45),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TitleText(
-                      title: "Personal Details",
-                    ),
-                    Padding(padding: EdgeInsets.only(top: 20)),
-                    TextBoxNew(
-                        onChanged: (value) {
-                          setState(() {
-                            widget.userRegistration.personalInformations.name =
-                                value;
-                          });
-                        },
-                        hint: "Name",
-                        initialvalue: widget.isEdit
-                            ? widget.user.personalInformations.name
-                            : null),
-                    TextBoxNew(
-                        onChanged: (value) {
-                          setState(() {
-                            widget.userRegistration.personalInformations.address
-                                .houseName = value;
-                          });
-                        },
-                        hint: "House Name",
-                        initialvalue: widget.isEdit
-                            ? widget.user.personalInformations.address.houseName
-                            : null),
-                    TextBoxNew(
-                        onChanged: (value) {
-                          setState(() {
-                            widget.userRegistration.personalInformations.address
-                                .postOffice = value;
-                          });
-                        },
-                        hint: "Post Office",
-                        initialvalue: widget.isEdit
-                            ? widget
-                                .user.personalInformations.address.postOffice
-                            : null),
-                    TextBoxNew(
-                        onChanged: (value) {
-                          setState(() {
-                            widget.userRegistration.personalInformations.address
-                                .city = value;
-                          });
-                        },
-                        hint: "City",
-                        initialvalue: widget.isEdit
-                            ? widget.user.personalInformations.address.city
-                            : null),
-                    TextBoxNew(
-                        onChanged: (value) {
-                          setState(() {
-                            widget.userRegistration.personalInformations.address
-                                .pincode = value;
-                          });
-                        },
-                        hint: "Postal Code",
-                        initialvalue: widget.isEdit
-                            ? widget.user.personalInformations.address.pincode
-                            : null),
-                    TextBoxNew(
-                        onChanged: (value) {
-                          setState(() {
-                            widget.userRegistration.personalInformations.age =
-                                value;
-                          });
-                        },
-                        hint: "Age",
-                        initialvalue: widget.isEdit
-                            ? widget.user.personalInformations.age
-                            : null),
-                    TextBoxNew(
-                        onChanged: (value) {
-                          setState(() {
-                            widget.userRegistration.personalInformations.phone =
-                                value;
-                          });
-                        },
-                        hint: "Phone",
-                        initialvalue: widget.isEdit
-                            ? widget.user.personalInformations.phone
-                            : null),
-                    TextBoxNew(
-                        onChanged: (value) {
-                          setState(() {
-                            widget.userRegistration.personalInformations
-                                .bloodGroup = value;
-                          });
-                        },
-                        hint: "Blood Group",
-                        initialvalue: widget.isEdit
-                            ? widget.user.personalInformations.bloodGroup
-                            : null),
-                    Padding(padding: EdgeInsets.only(top: 40)),
-                    widget.isEdit
-                        ? CommonButton(
-                            //Button if it is editing
-                            //TODO:Save editing
-                            onPressed: () {
-                              Navigator.pushReplacement(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return Account();
-                              }));
-                            },
-                            title: "Save",
-                          )
-                        : CommonButton(
-                            //Button if it is registration
-                            onPressed: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return VechicleDetails(
-                                  userRegistration: widget.userRegistration,
-                                );
-                              }));
-                            },
-                            title: "Next",
-                          )
-                  ])),
-        ]),
+      body: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          child: Column(children: [
+            Container(
+                margin: EdgeInsets.symmetric(horizontal: 45),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TitleText(
+                        title: "Personal Details",
+                      ),
+                      Padding(padding: EdgeInsets.only(top: 20)),
+                      TextBoxNew(
+                          onChanged: (value) {
+                            setState(() {
+                              widget.userRegistration.personalInformations
+                                  .name = value;
+                            });
+                          },
+                          hint: "Name",
+                          initialvalue: widget.isEdit
+                              ? widget.user.personalInformations.name
+                              : null),
+                      TextBoxNew(
+                          onChanged: (value) {
+                            setState(() {
+                              widget.userRegistration.personalInformations
+                                  .address.houseName = value;
+                            });
+                          },
+                          hint: "House Name",
+                          initialvalue: widget.isEdit
+                              ? widget
+                                  .user.personalInformations.address.houseName
+                              : null),
+                      TextBoxNew(
+                          onChanged: (value) {
+                            setState(() {
+                              widget.userRegistration.personalInformations
+                                  .address.postOffice = value;
+                            });
+                          },
+                          hint: "Post Office",
+                          initialvalue: widget.isEdit
+                              ? widget
+                                  .user.personalInformations.address.postOffice
+                              : null),
+                      TextBoxNew(
+                          onChanged: (value) {
+                            setState(() {
+                              widget.userRegistration.personalInformations
+                                  .address.city = value;
+                            });
+                          },
+                          hint: "City",
+                          initialvalue: widget.isEdit
+                              ? widget.user.personalInformations.address.city
+                              : null),
+                      TextBoxNew(
+                          onChanged: (value) {
+                            setState(() {
+                              widget.userRegistration.personalInformations
+                                  .address.pincode = value;
+                            });
+                          },
+                          hint: "Postal Code",
+                          initialvalue: widget.isEdit
+                              ? widget.user.personalInformations.address.pincode
+                              : null),
+                      TextBoxNew(
+                          onChanged: (value) {
+                            setState(() {
+                              widget.userRegistration.personalInformations.age =
+                                  value;
+                            });
+                          },
+                          hint: "Age",
+                          initialvalue: widget.isEdit
+                              ? widget.user.personalInformations.age
+                              : null),
+                      TextBoxNew(
+                          onChanged: (value) {
+                            setState(() {
+                              widget.userRegistration.personalInformations
+                                  .phone = value;
+                            });
+                          },
+                          hint: "Phone",
+                          initialvalue: widget.isEdit
+                              ? widget.user.personalInformations.phone
+                              : null),
+                      TextBoxNew(
+                          onChanged: (value) {
+                            setState(() {
+                              widget.userRegistration.personalInformations
+                                  .bloodGroup = value;
+                            });
+                          },
+                          hint: "Blood Group",
+                          initialvalue: widget.isEdit
+                              ? widget.user.personalInformations.bloodGroup
+                              : null),
+                      Padding(padding: EdgeInsets.only(top: 40)),
+                      widget.isEdit
+                          ? CommonButton(
+                              //Button if it is editing
+                              //TODO:Save editing
+                              onPressed: () {
+                                Navigator.pushReplacement(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return Account();
+                                }));
+                              },
+                              title: "Save",
+                            )
+                          : CommonButton(
+                              //Button if it is registration
+                              onPressed: () {
+                                if (_formKey.currentState.validate()) {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return VechicleDetails(
+                                      userRegistration: widget.userRegistration,
+                                    );
+                                  }));
+                                }
+                              },
+                              title: "Next",
+                            )
+                    ])),
+          ]),
+        ),
       ),
     );
   }
