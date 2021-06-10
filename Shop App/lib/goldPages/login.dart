@@ -18,6 +18,7 @@ class _LoginState extends State<Login> {
   String password;
   @override
   Widget build(BuildContext context) {
+    print('Login rebuild');
     double ht = MediaQuery.of(context).size.height;
     double wd = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -135,7 +136,6 @@ class _LoginState extends State<Login> {
                                 ),
                                 PasswordBox(
                                   onChanged: (value) {
-                        
                                     setState(() {
                                       password = value;
                                     });

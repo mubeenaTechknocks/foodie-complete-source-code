@@ -1,5 +1,6 @@
 class ApiUrls {
-  static String baseUrl = 'https://foodie-main.herokuapp.com';
+  // static String baseUrl = 'https://foodie-main.herokuapp.com';
+  static String baseUrl = 'http://172.20.10.2:5000';
   static String adminApp = baseUrl + '/admin';
   static String hotelApp = baseUrl + '/hotel';
   static String deliveryApp = baseUrl + '/delivery';
