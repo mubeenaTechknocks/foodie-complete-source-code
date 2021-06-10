@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodieshop/forgotPassword/provider/requestOTPProvider.dart';
 import 'package:foodieshop/goldWidgets/goldSetting.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
 
 class VerifyOTPScreen extends StatefulWidget {
@@ -54,24 +55,24 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                 SizedBox(
                   height: 50,
                 ),
-                // PinCodeTextField(
-                //   textStyle: TextStyle(
-                //     color: Colors.white,
-                //   ),
-                //   appContext: context,
-                //   onChanged: (v) {
-                //     print(v);
-                //   },
-                //   length: 6,
-                //   keyboardType: TextInputType.number,
-                //   autoFocus: true,
-                //   cursorColor: Colors.white,
-                //   pinTheme: PinTheme(
-                //     inactiveColor: themegreen,
-                //     selectedColor: themegreen,
-                //     shape: PinCodeFieldShape.box,
-                //   ),
-                // ),
+                PinCodeTextField(
+                  textStyle: TextStyle(
+                    color: Colors.white,
+                  ),
+                  appContext: context,
+                  onChanged: (v) {
+                    print(v);
+                  },
+                  length: 6,
+                  keyboardType: TextInputType.number,
+                  autoFocus: true,
+                  cursorColor: Colors.white,
+                  pinTheme: PinTheme(
+                    inactiveColor: themegreen,
+                    selectedColor: themegreen,
+                    shape: PinCodeFieldShape.box,
+                  ),
+                ),
                 SizedBox(height: 40),
                 Center(
                   child: MaterialButton(
