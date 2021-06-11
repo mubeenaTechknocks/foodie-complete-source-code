@@ -12,6 +12,10 @@ class ApiUrls {
   static String shopregister = adminApp + '/hoteldetails/register';
   static String subAdmin = adminApp + '/subadmin';
   static String deliveryBoys = adminApp + '/deliveryboy';
+  static String adminRPROtp = adminApp + '/account/recovery/request-otp';
+  static String adminRPRVerifyOtp = adminApp + '/account/recovery/verify-otp';
+  static String adminRPRupdatePassword =
+      adminApp + '/account/recovery/update-password';
 
   //Hotel App Urls
   static String orders = hotelApp + '/orderdetails';

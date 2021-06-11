@@ -28,6 +28,8 @@ dependencies:
   dio:
   fluttertoast:
   shared_preferences: ^2.0.5
+  provider: ^5.0.0
+  pin_code_fields: ^7.2.0
 
 
 

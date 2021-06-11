@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodieadmin/forgotPassword/ui/requestOTPpage.dart';
 
 class CustomTextButton extends StatelessWidget {
   @override
@@ -6,7 +7,12 @@ class CustomTextButton extends StatelessWidget {
     // ignore: deprecated_member_use
     return FlatButton(
       onPressed: () {
-        print('show to password reset screen');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => RequestOTPScreen(),
+          ),
+        );
       },
       child: Text(
         'Forget Password ?',
