@@ -1,20 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:foodieshop/forgotPassword/repository/reqOTPRepo.dart';
+import 'package:foodieshop/forgotPassword/repository/resetPasswordRepo.dart';
 import 'package:foodieshop/forgotPassword/services/apiGEneric.dart';
-import 'package:foodieshop/forgotPassword/ui/verifyOTPScreen.dart';
+import 'package:foodieshop/goldPages/login.dart';
 import 'package:foodieshop/models/response.dart';
 
-enum ReqOTPStates { DataCollection, Requesting, Success, Error }
-
-class RequestOTPProvider with ChangeNotifier {
-  String _email = '';
+class ResetPasswordProvider with ChangeNotifier {
   bool _isLoading = false;
   bool _status = true;
   ApiResponse<Response> _response;
-
-  ///TO get email from this provider
-  String get email => _email;
 
   ///Boolean for setting loading status
   bool get isLoading => _isLoading;
@@ -25,27 +18,20 @@ class RequestOTPProvider with ChangeNotifier {
   ///Api response from the server
   ApiResponse<Response> get response => _response;
 
-  ///Setter for the email
-  set setEmail(String value) {
-    _email = value;
-  }
-
-  void onButtontap(BuildContext context) async {
+  void onButtontap(BuildContext context, String email, String password) async {
     _status = true;
-    ReqOTPRepo _reqOTPRepo = ReqOTPRepo();
+    ResetPasswordRepo _verifyOTPRepo = ResetPasswordRepo();
     _isLoading = true;
     notifyListeners();
     try {
-      Response resp = await _reqOTPRepo.reqOTP(_email);
+      Response resp = await _verifyOTPRepo.resetPassword(email, password);
 
       if (resp.status) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => VerifyOTPScreen()));
+        Navigator.pushAndRemoveUntil(context,
+            MaterialPageRoute(builder: (context) => Login()), (route) => false);
       } else {
         _status = false;
         _response = ApiResponse.completed(resp);
-        // Navigator.push(context,
-        //     MaterialPageRoute(builder: (context) => VerifyOTPScreen()));
       }
     } catch (e) {
       _response = ApiResponse.error(e.toString());

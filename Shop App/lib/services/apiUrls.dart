@@ -15,6 +15,9 @@ class ApiUrls {
   static String products = hotelApp + '/homeadd';
   static String hotelLogin = adminApp + '/hoteldetails/signin';
   static String hotelRPROtp = hotelApp + '/account/recovery/request-otp';
+  static String hotelRPRVerifyOtp = hotelApp + '/account/recovery/verify-otp';
+  static String hotelRPRupdatePassword =
+      hotelApp + '/account/recovery/update-password';
 
   //Delivery App Urls
   static String deliveryBoys = deliveryApp + '/deliveryboy';

@@ -1,19 +1,64 @@
 import 'package:flutter/material.dart';
-import 'package:foodieshop/forgotPassword/ui/requestOTPpage.dart';
+import 'package:foodieshop/forgotPassword/repository/verifyOTPRepo.dart';
+import 'package:foodieshop/forgotPassword/services/apiGEneric.dart';
+import 'package:foodieshop/forgotPassword/ui/paswwordResetScreen.dart';
+import 'package:foodieshop/forgotPassword/ui/verifyOTPScreen.dart';
+import 'package:foodieshop/models/response.dart';
 
-class VerifyOTPProvider {
-  Future<String> validateOtp(String otp) async {
-    await Future.delayed(Duration(milliseconds: 2000));
-    if (otp == "1234") {
-      return null;
-    } else {
-      return "The entered Otp is wrong";
-    }
+class VerifyOTPProvider with ChangeNotifier {
+  String _otp = '';
+  bool _isLoading = false;
+  bool _status = true;
+  ApiResponse<Response> _response;
+
+  ///TO get otp from this provider
+  String get otp => _otp;
+
+  ///Boolean for setting loading status
+  bool get isLoading => _isLoading;
+
+  ///Boolean for the status of the response
+  bool get status => _status;
+
+  ///Api response from the server
+  ApiResponse<Response> get response => _response;
+
+  ///Setter for the otp
+  set setOTP(String value) {
+    _otp = value;
   }
 
-  // action to be performed after OTP validation is success
-  void moveToNextScreen(context) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => RequestOTPScreen()));
+  void onButtontap(BuildContext context, String email) async {
+    _status = true;
+    VerifyOTPRepo _verifyOTPRepo = VerifyOTPRepo();
+    _isLoading = true;
+    notifyListeners();
+    try {
+      Response resp = await _verifyOTPRepo.verifyOTP(email, otp);
+
+      if (resp.status) {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => PasswordResetPage()));
+      } else {
+        _status = false;
+        _response = ApiResponse.completed(resp);
+      }
+    } catch (e) {
+      _response = ApiResponse.error(e.toString());
+      showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text('OK'),
+                    )
+                  ],
+                  title: Text('No internet Connection'),
+                  content: Text(_response.message +
+                      '. Check your connection and try again.')));
+    }
+    _isLoading = false;
+    notifyListeners();
   }
 }
