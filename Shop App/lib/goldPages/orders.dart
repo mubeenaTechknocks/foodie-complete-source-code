@@ -124,7 +124,6 @@ class _OrdersState extends State<Orders> {
                                 : ListView.builder(
                                     itemCount: placed.length,
                                     itemBuilder: (context, index) {
-                                     
                                       OrdersModel placedOrder = placed[index];
                                       return OrderCard(
                                         onPressed: () {
@@ -200,7 +199,6 @@ class _OrdersState extends State<Orders> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) {
-                                              print(tobepicked);
                                               return TobePicked(
                                                 order: tobepickedOrder,
                                               );

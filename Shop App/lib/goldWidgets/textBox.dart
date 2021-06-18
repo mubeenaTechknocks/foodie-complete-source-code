@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodieshop/goldWidgets/goldSetting.dart';
 
 class TextBox1 extends StatefulWidget {
+  final Function(String) validator;
   final double height;
   final double width;
   final String hintText;
@@ -22,6 +23,7 @@ class TextBox1 extends StatefulWidget {
     this.onChanged,
     this.textInputAction = TextInputAction.next,
     this.initialValue,
+    this.validator,
   }) : super(key: key);
   @override
   _TextBox1State createState() => _TextBox1State();
@@ -38,6 +40,13 @@ class _TextBox1State extends State<TextBox1> {
       height: widget.height,
       color: Color.fromRGBO(16, 16, 16, 8),
       child: TextFormField(
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Field must not be null';
+          } else {
+            return null;
+          }
+        },
         initialValue: widget.initialValue,
         textInputAction: widget.textInputAction,
         onChanged: widget.onChanged,

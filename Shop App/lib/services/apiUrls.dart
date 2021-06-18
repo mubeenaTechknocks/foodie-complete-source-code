@@ -13,6 +13,7 @@ class ApiUrls {
   //Hotel App Urls
   static String orders = hotelApp + '/orderdetails';
   static String products = hotelApp + '/homeadd';
+  static String uploadImage = hotelApp + '/homeadd/upload-image';
   static String hotelLogin = adminApp + '/hoteldetails/signin';
   static String hotelRPROtp = hotelApp + '/account/recovery/request-otp';
   static String hotelRPRVerifyOtp = hotelApp + '/account/recovery/verify-otp';

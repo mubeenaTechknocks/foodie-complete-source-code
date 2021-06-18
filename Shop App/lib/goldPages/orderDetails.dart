@@ -242,21 +242,21 @@ class _ItemCardState extends State<ItemCard> {
         color: themedimbalck,
         child: Row(
           children: [
-            Container(
-              width: width < 330 ? 70 : 100,
-              height: width < 330 ? 70 : 100,
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color: Colors.white,
-                  width: 3,
-                ),
-                image: DecorationImage(
-                    image: AssetImage('images/Chicken65.jpg'),
-                    fit: BoxFit.fill),
-              ),
-            ),
+            // Container(
+            //   width: width < 330 ? 70 : 100,
+            //   height: width < 330 ? 70 : 100,
+            //   decoration: BoxDecoration(
+            //     color: Colors.blue,
+            //     borderRadius: BorderRadius.circular(12),
+            //     border: Border.all(
+            //       color: Colors.white,
+            //       width: 3,
+            //     ),
+            //     image: DecorationImage(
+            //         image: AssetImage('images/Chicken65.jpg'),
+            //         fit: BoxFit.fill),
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.only(left: 15.0),
               child: Column(

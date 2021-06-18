@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodieshop/goldPages/admin.dart';
 import 'package:foodieshop/goldWidgets/goldSetting.dart';
-import 'package:foodieshop/goldWidgets/imagecard.dart';
 import 'package:foodieshop/goldWidgets/textBox.dart';
 import 'package:foodieshop/goldWidgets/appbar.dart';
 import 'package:foodieshop/goldWidgets/colorButton.dart';
@@ -90,16 +89,6 @@ class _ProductEditState extends State<ProductEdit> {
                 Text(
                   'EDIT PRODUCT',
                   style: commonTextStyle,
-                ),
-                SizedBox(
-                  height: 38,
-                ),
-                ImageCard(
-                  image: 'images/Chicken65.jpg',
-                  whitecardheight: 195,
-                  whitecardwidth: 195,
-                  imagecardheight: 190,
-                  imagecardwidth: 190,
                 ),
                 SizedBox(
                   height: 30,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodieshop/goldWidgets/goldSetting.dart';
 import 'package:foodieshop/goldWidgets/switch.dart';
 import 'package:foodieshop/models/fooditems.dart';
+import 'package:foodieshop/services/apiUrls.dart';
 
 class ShopCard extends StatefulWidget {
   final FoodItems fooditem;
@@ -9,7 +10,8 @@ class ShopCard extends StatefulWidget {
 
   const ShopCard({
     Key key,
-    this.onPressed, this.fooditem,
+    this.onPressed,
+    this.fooditem,
   }) : super(key: key);
 
   @override
@@ -31,46 +33,61 @@ class _ShopCardState extends State<ShopCard> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 80,
-                    height: 80,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: Colors.white,
-                          width: 3,
-                        ),
-                        image: DecorationImage(
-                            image: AssetImage(
-                              'images/Chicken65.jpg',
+              Flexible(
+                flex: 4,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Flexible(
+                      flex: 1,
+                      child: Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: Colors.white,
+                              width: 3,
                             ),
-                            fit: BoxFit.fill)),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(widget.fooditem.productname.toUpperCase(),
-                            style: TextStyle(
-                                color: themewhite,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w800)),
-                        Text('Rs.${widget.fooditem.rate}/-',
-                            style: TextStyle(
-                              color: themewhite,
-                              fontSize: 14,
-                            ))
-                      ],
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                  ApiUrls.baseUrl +
+                                      '/' +
+                                      widget.fooditem.productImage,
+                                ),
+                                fit: BoxFit.fill)),
+                      ),
                     ),
-                  ),
-                ],
+                    Flexible(
+                      flex: 2,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(widget.fooditem.productname.toUpperCase(),
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: themewhite,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w800)),
+                            Text('Rs.${widget.fooditem.rate}/-',
+                                style: TextStyle(
+                                  color: themewhite,
+                                  fontSize: 14,
+                                ))
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              SwitchAvailability(
-                fooditem: widget.fooditem,
+              Flexible(
+                flex: 1,
+                child: SwitchAvailability(
+                  fooditem: widget.fooditem,
+                ),
               ),
             ],
           ),

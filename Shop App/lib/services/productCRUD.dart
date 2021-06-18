@@ -39,13 +39,13 @@ Future<FoodItems> addProduct(FoodItems foodAdd) async {
     var body = FoodItems.fromJson(jsonDecode(response.body));
     return body;
   } else {
+    print(response.body);
     throw Exception('failed to load');
   }
 }
 
 Future<bool> updateFoodItem(FoodItems fooditem) async {
-  var url =
-      Uri.parse(ApiUrls.products + '/${fooditem.id}');
+  var url = Uri.parse(ApiUrls.products + '/${fooditem.id}');
   var response = await http.patch(url,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',

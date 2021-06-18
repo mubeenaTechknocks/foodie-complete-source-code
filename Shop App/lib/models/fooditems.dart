@@ -4,46 +4,50 @@
 
 import 'dart:convert';
 
-List<FoodItems> foodItemsFromJson(String str) => List<FoodItems>.from(json.decode(str).map((x) => FoodItems.fromJson(x)));
+List<FoodItems> foodItemsFromJson(String str) =>
+    List<FoodItems>.from(json.decode(str).map((x) => FoodItems.fromJson(x)));
 
-String foodItemsToJson(List<FoodItems> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String foodItemsToJson(List<FoodItems> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class FoodItems {
-    FoodItems({
-        this.id,
-        this.productname,
-        this.description,
-        this.quantity,
-        this.unit,
-        this.rate,
-        this.hotelname,
-        this.available,
-        this.hoteladdressplace,
-        this.hotelphonenumber,
-        this.hoteladdresscity,
-        this.hotellatitude,
-        this.hotellongitude,
-        this.date,
-        this.v,
-    });
+  FoodItems({
+    this.id,
+    this.productname,
+    this.description,
+    this.quantity,
+    this.unit,
+    this.rate,
+    this.hotelname,
+    this.available,
+    this.hoteladdressplace,
+    this.hotelphonenumber,
+    this.hoteladdresscity,
+    this.hotellatitude,
+    this.hotellongitude,
+    this.productImage,
+    this.date,
+    this.v,
+  });
 
-    String id;
-    String productname;
-    String description;
-    String quantity;
-    String unit;
-    String rate;
-    String hotelname;
-    bool available;
-    String hoteladdressplace;
-    int hotelphonenumber;
-    String hoteladdresscity;
-    String hotellatitude;
-    String hotellongitude;
-    DateTime date;
-    int v;
+  String id;
+  String productname;
+  String description;
+  String quantity;
+  String unit;
+  String rate;
+  String hotelname;
+  bool available;
+  String hoteladdressplace;
+  int hotelphonenumber;
+  String hoteladdresscity;
+  String hotellatitude;
+  String hotellongitude;
+  String productImage;
+  DateTime date;
+  int v;
 
-    factory FoodItems.fromJson(Map<String, dynamic> json) => FoodItems(
+  factory FoodItems.fromJson(Map<String, dynamic> json) => FoodItems(
         id: json["_id"],
         productname: json["productname"],
         description: json["description"],
@@ -57,11 +61,11 @@ class FoodItems {
         hoteladdresscity: json["hoteladdresscity"],
         hotellatitude: json["hotellatitude"],
         hotellongitude: json["hotellongitude"],
-        date: DateTime.parse(json["date"]),
+        productImage: json["productImage"],
         v: json["__v"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "_id": id,
         "productname": productname,
         "description": description,
@@ -77,5 +81,5 @@ class FoodItems {
         "hotellongitude": hotellongitude,
         "date": date.toIso8601String(),
         "__v": v,
-    };
+      };
 }

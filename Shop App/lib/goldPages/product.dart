@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodieshop/goldPages/productEdit.dart';
 import 'package:foodieshop/goldWidgets/goldSetting.dart';
 import 'package:foodieshop/models/fooditems.dart';
+import 'package:foodieshop/services/apiUrls.dart';
 
 class Product extends StatefulWidget {
   final FoodItems fooditem;
@@ -37,8 +38,8 @@ class _ProductState extends State<Product> {
             pinned: true,
             expandedHeight: height * .45,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                'images/Chicken65.jpg',
+              background: Image.network(
+                ApiUrls.baseUrl + '/' + widget.fooditem.productImage,
                 fit: BoxFit.fill,
               ),
             ),
@@ -59,26 +60,26 @@ class _ProductState extends State<Product> {
                         fontWeight: FontWeight.w800,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: RichText(
-                        text: TextSpan(
-                            text: 'Category :   ',
-                            style: TextStyle(
-                              color: themewhite,
-                              fontSize: 16,
-                            ),
-                            children: [
-                              TextSpan(
-                                text: 'Spicy',
-                                style: TextStyle(
-                                  color: themewhite,
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ]),
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(vertical: 10),
+                    //   child: RichText(
+                    //     text: TextSpan(
+                    //         text: 'Category :   ',
+                    //         style: TextStyle(
+                    //           color: themewhite,
+                    //           fontSize: 16,
+                    //         ),
+                    //         children: [
+                    //           TextSpan(
+                    //             text: 'Spicy',
+                    //             style: TextStyle(
+                    //               color: themewhite,
+                    //               fontSize: 16,
+                    //             ),
+                    //           ),
+                    //         ]),
+                    //   ),
+                    // ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: RichText(
@@ -105,7 +106,8 @@ class _ProductState extends State<Product> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: Text( widget.fooditem.description,
+                      child: Text(
+                        widget.fooditem.description,
                         textAlign: TextAlign.justify,
                         style: TextStyle(
                           color: themewhite,

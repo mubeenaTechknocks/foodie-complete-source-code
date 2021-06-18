@@ -164,50 +164,47 @@ class _ItemCardState extends State<ItemCard> {
         color: themedimbalck,
         child: Row(
           children: [
-            Flexible(
-              flex: 1,
-              child: Container(
-                width: width < 330 ? 70 : 100,
-                height: width < 330 ? 70 : 100,
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: Colors.white,
-                    width: 3,
-                  ),
-                  image: DecorationImage(
-                      image: AssetImage('images/Chicken65.jpg'),
-                      fit: BoxFit.fill),
-                ),
-              ),
-            ),
+            // Flexible(
+            //   flex: 1,
+            //   child: Container(
+            //     width: width < 330 ? 70 : 100,
+            //     height: width < 330 ? 70 : 100,
+            //     decoration: BoxDecoration(
+            //       color: Colors.blue,
+            //       borderRadius: BorderRadius.circular(12),
+            //       border: Border.all(
+            //         color: Colors.white,
+            //         width: 3,
+            //       ),
+            //       image: DecorationImage(
+            //           image: AssetImage('images/Chicken65.jpg'),
+            //           fit: BoxFit.fill),
+            //     ),
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.only(left: 15.0),
-              child: Flexible(
-                flex: 4,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      widget.order.itemName,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                      ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    widget.order.itemName,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
                     ),
-                    Text(
-                      'Price :          ${widget.order.itemRate}/-',
-                      style: cardTextRight,
-                    ),
-                    Text(
-                      'Quantity :    ${widget.order.quantity}    x1',
-                      style: cardTextRight,
-                    ),
-                  ],
-                ),
+                  ),
+                  Text(
+                    'Price :          ${widget.order.itemRate}/-',
+                    style: cardTextRight,
+                  ),
+                  Text(
+                    'Quantity :    ${widget.order.quantity}    x1',
+                    style: cardTextRight,
+                  ),
+                ],
               ),
             )
           ],
