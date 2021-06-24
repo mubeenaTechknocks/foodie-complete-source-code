@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:foodieshop/models/fooditems.dart';
 import 'package:foodieshop/services/apiUrls.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<List<FoodItems>> loadProducts() async {
   var url = Uri.parse(ApiUrls.products);
@@ -16,6 +17,10 @@ Future<List<FoodItems>> loadProducts() async {
 }
 
 Future<FoodItems> addProduct(FoodItems foodAdd) async {
+  final hotelsname = await gethoteldetails('hotelname');
+  final hoteladdressplace = await gethoteldetails('hotelplace');
+  final hoteladdresscity = await gethoteldetails('hotelcity');
+  final hotelnumber = await gethoteldetails('number');
   var url = Uri.parse(ApiUrls.products);
   var response = await http.post(url,
       headers: <String, String>{
@@ -27,11 +32,11 @@ Future<FoodItems> addProduct(FoodItems foodAdd) async {
         "quantity": foodAdd.quantity,
         "unit": foodAdd.unit,
         "rate": foodAdd.rate,
-        "hotelname": "RadhaKrishna",
+        "hotelname": hotelsname,
         "available": true,
-        "hoteladdressplace": "Muncipal Bus Stand",
-        "hotelphonenumber": 1234567808,
-        "hoteladdresscity": "Thrissur",
+        "hoteladdressplace": hoteladdressplace,
+        "hotelphonenumber": hotelnumber,
+        "hoteladdresscity": hoteladdresscity,
         "hotellatitude": "34567.6543",
         "hotellongitude": "12345.456",
       }));
@@ -45,6 +50,15 @@ Future<FoodItems> addProduct(FoodItems foodAdd) async {
 }
 
 Future<bool> updateFoodItem(FoodItems fooditem) async {
+  final hotelsname = await gethoteldetails('hotelname');
+  final hoteladdressplace = await gethoteldetails('hotelplace');
+  final hoteladdresscity = await gethoteldetails('hotelcity');
+  final hotelnumber = await gethoteldetails('number');
+  print(hotelsname);
+  print(hoteladdressplace);
+  print(hoteladdresscity);
+  print(hotelnumber);
+
   var url = Uri.parse(ApiUrls.products + '/${fooditem.id}');
   var response = await http.patch(url,
       headers: <String, String>{
@@ -56,11 +70,11 @@ Future<bool> updateFoodItem(FoodItems fooditem) async {
         "quantity": fooditem.quantity,
         "unit": fooditem.unit,
         "rate": fooditem.rate,
-        "hotelname": "RadhaKrishna",
+        "hotelname": hotelsname,
         "available": fooditem.available,
-        "hoteladdressplace": "Muncipal Bus Stand",
-        "hotelphonenumber": 1234567808,
-        "hoteladdresscity": "Thrissur",
+        "hoteladdressplace": hoteladdressplace,
+        "hotelphonenumber": hotelnumber,
+        "hoteladdresscity": hoteladdresscity,
         "hotellatitude": "34567.6543",
         "hotellongitude": "12345.456",
       }));
@@ -81,4 +95,13 @@ Future deleteProduct(String id) async {
   } else {
     throw Exception('failed to load');
   }
+}
+
+Future<String> gethoteldetails(String reference) async {
+  final prefs = await SharedPreferences.getInstance();
+
+// Try reading data from the counter key. If it doesn't exist, return 0.
+  final hotelname = prefs.getString(reference) ?? " ";
+
+  return hotelname;
 }

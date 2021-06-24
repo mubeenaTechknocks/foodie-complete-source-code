@@ -17,6 +17,7 @@ void main() {
         }),
       ],
       child: MaterialApp(
+        title: 'Foodie Admin',
         debugShowCheckedModeBanner: false,
         home: Foodie(),
       ),

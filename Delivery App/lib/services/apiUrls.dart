@@ -1,5 +1,6 @@
 class ApiUrls {
   static String baseUrl = 'https://foodie-main.herokuapp.com';
+  // static String baseUrl = 'http://172.20.10.2:5000';
   static String adminApp = baseUrl + '/admin';
   static String hotelApp = baseUrl + '/hotel';
   static String deliveryApp = baseUrl + '/delivery';
@@ -20,4 +21,9 @@ class ApiUrls {
   static String deliveryBoyRegister = deliveryApp + '/api/user/register';
   static String getDeliveryboyDetails =
       deliveryApp + '/api/user/getonedeliveryboy';
+  static String deliveryRPROtp = deliveryApp + '/account/recovery/request-otp';
+  static String deliveryRPRVerifyOtp =
+      deliveryApp + '/account/recovery/verify-otp';
+  static String deliveryRPRupdatePassword =
+      deliveryApp + '/account/recovery/update-password';
 }

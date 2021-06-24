@@ -87,7 +87,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                 children: [
                   Text('Payment', style: cardTextleft),
                   Text(
-                   widget.order.payment,
+                    widget.order.payment,
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       color: themegreen,
@@ -142,22 +142,22 @@ class _ItemCardState extends State<ItemCard> {
         color: themedimbalck,
         child: Row(
           children: [
-            Container(
-              width: width < 330 ? 70 : 100,
-              height: width < 330 ? 70 : 100,
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color: Colors.white,
-                  width: 3,
-                ),
-                image: DecorationImage(
-                    image: NetworkImage(
-                        'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Chicken_65_%28Dish%29.jpg/1280px-Chicken_65_%28Dish%29.jpg'),
-                    fit: BoxFit.fill),
-              ),
-            ),
+            // Container(
+            //   width: width < 330 ? 70 : 100,
+            //   height: width < 330 ? 70 : 100,
+            //   decoration: BoxDecoration(
+            //     color: Colors.blue,
+            //     borderRadius: BorderRadius.circular(12),
+            //     border: Border.all(
+            //       color: Colors.white,
+            //       width: 3,
+            //     ),
+            //     image: DecorationImage(
+            //         image: NetworkImage(
+            //             'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Chicken_65_%28Dish%29.jpg/1280px-Chicken_65_%28Dish%29.jpg'),
+            //         fit: BoxFit.fill),
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.only(left: 15.0),
               child: Column(
@@ -201,10 +201,7 @@ class BillCard extends StatefulWidget {
 class _BillCardState extends State<BillCard> {
   @override
   Widget build(BuildContext context) {
-
-
-
- double tax = (int.parse(widget.order.itemRate) * .18);
+    double tax = (int.parse(widget.order.itemRate) * .18);
     double deliveryCharge = (int.parse(widget.order.itemRate) * .1);
     double total = int.parse(widget.order.itemRate) + deliveryCharge + tax;
 

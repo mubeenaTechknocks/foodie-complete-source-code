@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodieshop/goldPages/login.dart';
 import 'package:foodieshop/goldWidgets/goldSetting.dart';
 import 'package:foodieshop/services/loginService.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FoodieAppbar extends StatefulWidget implements PreferredSizeWidget {
   final PreferredSizeWidget bottom;
@@ -20,6 +21,26 @@ class FoodieAppbar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _FoodieAppbarState extends State<FoodieAppbar> {
+  String _hotelname;
+  @override
+  void initState() {
+    super.initState();
+    gethotelname().then((value) {
+      setState(() {
+        _hotelname = value;
+      });
+    });
+  }
+
+  Future<String> gethotelname() async {
+    final prefs = await SharedPreferences.getInstance();
+
+// Try reading data from the counter key. If it doesn't exist, return 0.
+    final hotelname = prefs.getString('hotelname') ?? " ";
+
+    return hotelname;
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -36,7 +57,7 @@ class _FoodieAppbarState extends State<FoodieAppbar> {
         Container(
             padding: EdgeInsets.only(top: 20),
             child: Text(
-              "SPOON",
+              _hotelname ?? ''.toUpperCase(),
               style: TextStyle(fontSize: 18),
             )),
         Container(

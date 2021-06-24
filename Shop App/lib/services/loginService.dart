@@ -17,14 +17,22 @@ Future<bool> login(String email, String password) async {
       },
       body: jsonEncode({"Email": email, "Password": password}));
   if (response.statusCode == 200) {
-    print(response.body);
+    var body = jsonDecode(response.body);
+    var token = body['token'];
+    var hotelsname = body['hotelsname'];
+    var hoteladdressplace = body['hoteladdressplace'];
+    var hoteladdresscity = body['hoteladdresscity'];
+    var hotelnumber = body['number'].toString();
 
-    token = response.body.toString();
     // obtain shared preferences
     final prefs = await SharedPreferences.getInstance();
 
     // set value
     prefs.setString('token', token);
+    prefs.setString('hotelname', hotelsname);
+    prefs.setString('hotelplace', hoteladdressplace);
+    prefs.setString('hotelcity', hoteladdresscity);
+    prefs.setString('number', hotelnumber);
 
     return true;
   } else {
@@ -49,4 +57,8 @@ Future<void> removeToken() async {
   final prefs = await SharedPreferences.getInstance();
 
   prefs.remove('token');
+  prefs.remove('hotelname');
+  prefs.remove('hotelplace');
+  prefs.remove('hotelcity');
+  prefs.remove('number');
 }

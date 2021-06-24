@@ -12,6 +12,7 @@ void main() {
       }),
     ],
     child: MaterialApp(
+        title: 'Foodie Shop',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(textTheme: TextTheme()),
         home: Foodie()),

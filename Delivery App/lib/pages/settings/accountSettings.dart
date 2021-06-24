@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodie_delivery/animations/enterExitAniation.dart';
 import 'package:foodie_delivery/models/usermodel.dart';
-import 'package:foodie_delivery/pages/settings/accountManagement.dart';
 import 'package:foodie_delivery/pages/settings/personalInformationS.dart.dart';
 import 'package:foodie_delivery/pages/settings/vehicleDetailS.dart';
 import 'package:foodie_delivery/pages/settings/wallet.dart';
@@ -121,18 +120,18 @@ class _AccountState extends State<Account> {
                                   icon: Icons.two_wheeler_sharp,
                                   text: 'Vehicle Details',
                                 ),
-                                SettingsCard(
-                                  icon: Icons.settings_rounded,
-                                  text: 'Account Management',
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        EnterExitRoute(
-                                          exitPage: Account(),
-                                          enterPage: AccountManagement(),
-                                        ));
-                                  },
-                                ),
+                                // SettingsCard(
+                                //   icon: Icons.settings_rounded,
+                                //   text: 'Account Management',
+                                //   onPressed: () {
+                                //     Navigator.push(
+                                //         context,
+                                //         EnterExitRoute(
+                                //           exitPage: Account(),
+                                //           enterPage: AccountManagement(),
+                                //         ));
+                                //   },
+                                // ),
                                 SettingsCard(
                                   icon: Icons.quick_contacts_mail,
                                   text: 'Support',
